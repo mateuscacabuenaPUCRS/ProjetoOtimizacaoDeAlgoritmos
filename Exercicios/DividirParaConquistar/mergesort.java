@@ -29,7 +29,8 @@ public class mergesort {
     }
 
     public static ArrayList<Integer> MERGESORT(ArrayList<Integer> list) {
-        if (list.size() <= 1) return list;
+        if (list.size() <= 1)
+            return list;
 
         // Divide a lista em duas sublistas
         int mid = list.size() / 2;
