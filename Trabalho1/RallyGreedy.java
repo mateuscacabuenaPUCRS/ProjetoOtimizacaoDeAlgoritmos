@@ -10,35 +10,47 @@ public class RallyGreedy {
     private static final int[] pontosParada = {100, 250, 400, 550, 700, 850};
 
     public static void main(String[] args) {
-        // Método para verificar as paradas (a ser implementado por você)
+        long inicio = System.nanoTime();
+
         verificarParadas();
+
+        long fim = System.nanoTime();
+
+        long duracao = (fim - inicio) / 1_000_000;
+        System.out.println("\nTempo de execução: " + duracao + " ms");
     }
 
-    // Método base para estruturar o algoritmo Greedy
     public static void verificarParadas() {
-        // Inicialização de variáveis para armazenar o ponto atual e o número de paradas
-        int posicaoAtual = 0;  // Começamos no ponto de partida
+        int posicaoAtual = 0;
         int numParadas = 0;
         int distanciaDeHoje = 0;
+
+        System.out.println("\n\nIniciando rally:");
 
         for (int i = 0; i < pontosParada.length; i++) {
             int proximaParada = pontosParada[i];
             int distanciaProximaParada = proximaParada - posicaoAtual;
             int distanciaDisponivel = D - distanciaDeHoje;
 
+            if(distanciaProximaParada > D) {
+                System.out.println("\nPróxima parada inválida: distância da próxima parada é maior que a distância que conseguimos viajar por dia.");
+                break;
+            }
+
+            System.out.println("\nPosição atual: " + posicaoAtual + " km");
+            System.out.println("Próxima parada: " + proximaParada + " km");
+            System.out.println("Distância disponível no dia: " + distanciaDisponivel + " km");
+            
             // Verifica se a próxima parada está dentro da distância máxima diária
             if (distanciaDisponivel >= distanciaProximaParada) {
-                // Se está dentro do limite, atualizamos a posição para este ponto de parada
                 posicaoAtual = proximaParada;
                 distanciaDeHoje += distanciaProximaParada;
-                System.out.println("Continuamos até o ponto de parada em " + posicaoAtual + " km.");
+                System.out.println("*Continuamos até o ponto de parada em " + posicaoAtual + " km.*");
             } else {
-                // Se não está dentro do limite, temos que acampar na parada anterior
-                System.out.println("Acampamos no ponto de parada em " + posicaoAtual + " km.");
+                System.out.println("*Acampamos no ponto de parada em " + posicaoAtual + " km, a distância até o próximo ponto é de " + distanciaProximaParada + " km*");
                 distanciaDeHoje = 0;
                 numParadas++;
                 i--;
-                System.out.println("Amanheceu.");
             }
         }
 
