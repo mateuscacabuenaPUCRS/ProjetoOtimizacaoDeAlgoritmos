@@ -10,16 +10,25 @@ public class RainhasTabuleiro {
         String[][] tabuleiro = new String[n][n];   
         
         // Inicializa a matriz com valores padrão (por exemplo, "-")
+        reiniciaTabuleiro(tabuleiro);
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
+                posicionarRainha(tabuleiro, i, j);
+                tabuleiro = maxRainhas(tabuleiro, n);
+                System.out.println(matrizParaString(tabuleiro));
+                reiniciaTabuleiro(tabuleiro);
+            }
+        }
+    }
+
+    public static String[][] reiniciaTabuleiro(String[][] tabuleiro) {
+        for (int i = 0; i < tabuleiro.length; i++) {
+            for (int j = 0; j < tabuleiro.length; j++) {
                 tabuleiro[i][j] = "-";
             }
         }
-
-        tabuleiro = maxRainhas(tabuleiro, n);
-        
-        // Mostra a matriz
-        System.out.println(matrizParaString(tabuleiro));
+        return tabuleiro;
     }
 
     public static String[][] maxRainhas(String[][] tabuleiro, int n) {
