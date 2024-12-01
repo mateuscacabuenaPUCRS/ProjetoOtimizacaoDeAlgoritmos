@@ -29,29 +29,19 @@ public class SDMGuloso {
     // Algoritmo guloso para encontrar a subcolecao disjunta máxima (SDM)
     public static List<Intervalo> sdmGuloso(List<Intervalo> intervalos) {
         List<Intervalo> X = new ArrayList<>();
-        int i = 0;  // Último intervalo adicionado à solução
-        int iteracoes = 0; // Contador de iterações
+        int fi = -1;  // f0 ← −∞
 
         // Inicialmente ordenamos os intervalos pelo seu término
         Collections.sort(intervalos);
 
-        X.add(intervalos.get(i)); // Adicione sempre o primeiro intervalo
-        i++;
-
+        // Percorra todos os intervalos
         for (int k = 0; k < intervalos.size(); k++) {
-            iteracoes++; // Contabiliza uma iteração
-            // Verifica se o intervalo atual começa após o fim do último intervalo adicionado
-            if (intervalos.get(k).inicio > intervalos.get(i).fim) {
-                System.out.println("");
-                System.out.printf("%d é maior que %d, portanto adicionará na lista.");
-                X.add(intervalos.get(k));
-
-                i = k; // Atualiza o índice do último intervalo selecionado
+            if (intervalos.get(k).inicio > fi) {  // se sk > fi
+                System.out.println("Adicionando intervalo " + intervalos.get(k));
+                X.add(intervalos.get(k));  // X ← X ∪ {k}
+                fi = intervalos.get(k).fim;  // i ← k
             }
         }
-
-        // Exibe o número de iterações
-        System.out.println("Número de iteracoes: " + iteracoes);
         return X;
     }
 
