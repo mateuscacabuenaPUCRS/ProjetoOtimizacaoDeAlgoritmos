@@ -58,8 +58,10 @@ public class RabinKarpTrabalho {
 
   public static void main(String[] args) {
     int q = 101;
+
+    System.out.println("\n\nExecução do Rabin Karp pesquisado:");
     
-    System.out.println("\n\nTeste 1: ");
+    System.out.println("\nTeste 1: ");
     search("ana", "banana", q);
 
     System.out.println("\nTeste 2: ");

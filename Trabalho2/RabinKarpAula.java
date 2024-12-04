@@ -27,7 +27,9 @@ public class RabinKarpAula {
     }
 
     public static void main(String[] args) {
-        System.out.println("\n\nTeste 1: ");
+        System.out.println("\n\nExecução do Rabin Karp desenvolvido em aula:");
+
+        System.out.println("\nTeste 1: ");
         System.out.println(rabinKarp("ana", "banana"));
 
         System.out.println("\nTeste 2: ");
